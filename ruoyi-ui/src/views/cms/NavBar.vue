@@ -3,19 +3,19 @@
     <h2 class="logo"><svg-icon icon-class="EarOfWheat" />  Blog</h2>
     <div class="bg-purple-light">
       <el-menu :default-active="activeIndex" router class="el-menu-demo" mode="horizontal" style="border: none;"
-        background-color="rgba(0,0,0,0)" text-color="#fff" active-text-color="#ffd04b">
-        <el-menu-item index="/cms/main/cmsIndex"><i class="el-icon-s-home" style="color: rgba(255, 255, 255);"></i>首页
+        background-color="rgba(0,0,0,0)" text-color="#000000" active-text-color="#ffd04b">
+        <el-menu-item index="/cms/main/cmsIndex"><i class="el-icon-s-home"></i>首页
         </el-menu-item>
         <el-menu-item :index="item.path" v-for="item in menulist" :key="item.id">
           <!--                图标-->
-          <i :class="item.icon" style="color: rgba(255, 255, 255);"></i>
+          <i :class="item.icon"></i>
           <!--                文本-->
           {{item.authName}}
         </el-menu-item>
       </el-menu>
     </div>
     <div class="bg-purple-light el-menu-hidden" v-if="menuHiddenVisiable">
-      <el-menu :default-active="activeIndex" router background-color="rgba(84,92,100,0.5)" text-color="#fff"
+      <el-menu :default-active="activeIndex" router background-color="rgba(84,92,100,0.5)" text-color="#000000"
         active-text-color="#ffd04b">
         <el-menu-item index="/cms/main/cmsIndex" @click="menuAway"><i class="el-icon-s-home"
             style="color: rgba(255, 255, 255);"></i>首页</el-menu-item>
@@ -268,7 +268,7 @@
   .el-header {
     display: flex;
     justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #fff;
     align-items: center;
     transition: .2s;
   }
@@ -283,20 +283,26 @@
   }
 
   .el-menu /deep/ .el-menu-item {
+	  /* 这里不加圆角，在移开时会出现正方形的背景 */
+	  border-radius: 10px;
+	  color: black;
     background-color: rgba(0, 0, 0, 0) !important;
   }
 
 
   .el-menu /deep/ .el-menu-item i {
-    color: rgba(255, 255, 255);
+	  border-radius: 10px;
+    color: black;
   }
 
   .el-menu /deep/ .el-menu-item:hover i {
+	  border-radius: 10px;
     color: white;
   }
 
   .el-menu /deep/ .el-menu-item:hover {
-    background-color: rgba(0, 0, 0, 0.5) !important;
+	  border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2) !important;
   }
 
   .search_input {
@@ -377,7 +383,7 @@
     cursor: pointer;
     float: right;
     font-size: 16px;
-    color: #ffffff;
+    color: #000000;
   }
 
   .logo {

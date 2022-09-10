@@ -2,7 +2,6 @@
   <el-row :gutter="20">
     <el-col :sm="2" class="hidden-xs-only" style="opacity:0;">左侧占位</el-col>
     <el-col :xs="24" :sm="15">
-      <el-card style="background-color: rgba(255,255,255,0.9)" class="left-item">
         <div slot="header" class="total">
           <div class="title">
             <i v-if="selected" class="el-icon-back" @click="updateBlogList"></i>
@@ -49,11 +48,10 @@
             </div>
           </el-col>
         </el-row>
-        <pagination v-show="total>0" :total="total" :page.sync="queryParams.pageNum" :limit.sync="queryParams.pageSize" background layout="total, sizes, prev, pager, next, jumper" @pagination="getBlogList"  style="margin-bottom: 30px;float: right;margin-right: 10px;"/>
-      </el-card>
+        <pagination v-show="total>0" :total="total" :page.sync="queryParams.pageNum" :limit.sync="queryParams.pageSize" @pagination="getBlogList"/>
 
     </el-col>
-    <el-col :xs="24" :sm="5">
+    <el-col style="margin-top: 23px;" :xs="24" :sm="5">
       <el-card style="background-color: rgba(255,255,255,0.9)" class=" right-item">
         <div slot="header" class="attributes">
           <b>分类</b>
@@ -433,8 +431,8 @@
     transition: all .2s;
   }
   
-  .left-item .pagination-container{
-    background:rgb(255, 255, 255,0)
+  .left-item{
+	  background-color: #fff;
   }
 
   @keyframes clipMe {
@@ -495,6 +493,7 @@
 
 
   .right-item {
+	  border-radius: 20px;
     margin-bottom: 20px;
   }
 
@@ -651,17 +650,18 @@
   }
 
   .blog-content:hover {
-    border-left: 5px solid #3a8ee6;
-    border-right: 5px solid #3a8ee6;
-    background-color: rgba(58, 142, 230, 0.3);
+    border-right: 5px solid #e2e2e2;
+    background-color: #fff;
     cursor: pointer;
   }
 
   .blog-content {
-    padding: 10px;
-    height: auto;
+	height: 300px;
+	background-color: #fff;
+	border-radius: 25px;
+	margin-top: 20px;
     border-bottom: 1px solid rgb(199, 163, 92);
-    /*border-bottom: 1px solid rgba(34, 36, 38, .15);*/
+    border-bottom: 1px solid rgba(34, 36, 38, .15);
     transition: .3s;
   }
 
@@ -737,4 +737,23 @@
       width: 100%;
     }
   }
+  
+  .page-class {
+	  height: 50px;
+	  background-color: #fff;
+	  width: 1552px;
+	  border-radius: 20px;
+  }
+  
+  /deep/ .pagination-container {
+	  width: 1560px;
+	  height: 50px;
+	  border-radius: 50px;
+	  margin-left: -15px;
+  }
+  
+  /deep/ .pagination-container .el-pagination__jump {
+    padding-right: 30px;
+  }
+  
 </style>
