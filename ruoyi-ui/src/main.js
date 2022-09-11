@@ -36,6 +36,11 @@ import DictTag from '@/components/DictTag'
 import VueMeta from 'vue-meta'
 // 字典数据组件
 import DictData from '@/components/DictData'
+// 鼠标特效
+// import './assets/mouseClick/heart';
+import './assets/mouseClick/word';
+// 鼠标移动特效
+import './assets/mouseMove/mouseMoveStar';
 
 // 全局方法挂载
 Vue.prototype.getDicts = getDicts
