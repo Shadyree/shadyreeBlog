@@ -1,7 +1,9 @@
 <template>
   <el-row :gutter="20">
+		<div class="background" :style="backgroundImage">
+		</div>
     <el-col :sm="3" class="hidden-xs-only" style="opacity:0;">左侧占位</el-col>
-    <el-col :xs="24" :sm="18">
+    <el-col :xs="24" :sm="18" style="margin-top: 100px;">
       <el-container>
         <el-timeline class="animate__animated animate__fadeInLeft">
           <el-timeline-item :color="color" v-for="essay in essayList" :key="essay.id" :timestamp="essay.createTime"
@@ -40,6 +42,7 @@
   import {
     cmsEssayList,
   } from "@/api/cms/blog";
+	import backgroundImages from '../backgroundImages.js';
   export default {
     name: 'essay',
     data() {
@@ -56,9 +59,20 @@
           views: null,
           status: null,
         },
+				backgroundImages,
         color: "#ffd04b",
       }
     },
+		computed: {
+			backgroundImage() {
+			  // 根据背景图数组的长度随机选择索引
+			  const randIndex = Math.floor(Math.random() * this.backgroundImages.length)
+			  return {
+			    // 获取对应的图片资源并将其设置到`background-image`属性上
+			    backgroundImage: `url(${this.backgroundImages[randIndex]})`
+			  }
+			},
+		},
     created() {
       this.getEssayList()
     },
@@ -73,6 +87,17 @@
 </script>
 
 <style scoped>
+	.background {
+		background-size: cover;
+		margin: 0px;
+		padding: 0px;
+		top: 0;
+		width: 100%;
+		height: 120vh;
+		position: fixed;
+		z-index: 0;
+	}
+	  
   .el-timeline {
     font: 16px/1.5 'Microsoft Yahei', 'PingFang SC', 'Hiragino Sans GB', sans-serif !important;
 
