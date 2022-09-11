@@ -1,5 +1,7 @@
 <template>
   <el-row :gutter="20">
+	  <div class="background" :style="backgroundImage">
+	  </div>
     <el-col :sm="3" class="hidden-xs-only" style="opacity:0;">左侧占位</el-col>
     <el-col :xs="24" :sm="18">
       <el-card style="background-color: rgba(255, 255, 255,1)" class="first-card">
@@ -79,7 +81,8 @@
 </template>
 
 <script>
-import comment from "./comment/Ipcomment"
+import comment from "./comment/Ipcomment";
+import backgroundImages from '../backgroundImages.js';
 import {
     getBlogDetail,
     addBlogViews,
@@ -93,6 +96,7 @@ export default {
   data() {
     return {
       blog: {},
+	  backgroundImages,
       commentForm: {
         content: ''
       },
@@ -110,7 +114,15 @@ export default {
     ...mapState([
       'userInfo',
       'administrator',
-    ])
+    ]),
+	backgroundImage() {
+	  // 根据背景图数组的长度随机选择索引
+	  const randIndex = Math.floor(Math.random() * this.backgroundImages.length)
+	  return {
+	    // 获取对应的图片资源并将其设置到`background-image`属性上
+	    backgroundImage: `url(${this.backgroundImages[randIndex]})`
+	  }
+	},
   },
   methods: {
     // 获取博客详情信息
@@ -128,10 +140,22 @@ export default {
 </script>
 
 <style scoped>
-
+.background {
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+    top: 0;
+    width: 100%;
+    height: 120vh;
+	position: fixed;
+	z-index: 0;
+  }
 
   .el-card {
+	  margin-top: 100px;
     width: 100%;
+	position: relative;
+	z-index: 5;
   }
 
   .el-popper /deep/ {

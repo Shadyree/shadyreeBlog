@@ -17,6 +17,7 @@
 
 <style scoped>
   .el-main {
+	  padding: 0;
     min-height: 650px;
   }
 </style>

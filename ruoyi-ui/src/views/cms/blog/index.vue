@@ -271,7 +271,7 @@
           for (let i = 0; i < response.rows.length; i++) {
             let blogInfo = response.rows[i];
             if (blogInfo.blogPic.length > 0) {
-              response.rows[i].blogPic = process.env.VUE_APP_BASE_API + blogInfo.blogPic
+              response.rows[i].blogPic =  process.env.VUE_APP_BASE_API + blogInfo.blogPic
             }else{
               response.rows[i].blogPic = '/errorImg.jpg'
             }

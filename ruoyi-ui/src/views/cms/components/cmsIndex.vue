@@ -1,5 +1,31 @@
 <template>
   <el-row :gutter="20">
+	  <div class="background" :style="backgroundImage">
+		  <div class="background-content">
+			  <div class="back-title">Shadyree的个人小站</div>
+			  <div class="back-desc">
+				  <vue-typed-js
+				    class="back-desc"
+				    :strings="typingTexts"
+				    :loop="true"
+				    :startDelay="300"
+				    :typeSpeed="100"
+				    :backSpeed="50"
+				  >
+				    <span class="typing"></span>
+				  </vue-typed-js>
+			  </div>
+			  <div class="back-button">
+				<a class="back-button-detail" href="#indexCard">
+					<i class="el-icon-arrow-down" style="font-weight: 400;"></i>
+					开始阅读
+				</a>
+				<a class="back-button-detail" href="https://space.bilibili.com/19828674">
+					<i class="el-icon-s-platform" style="font-weight: 400;"></i>
+					我的B站</a>
+			  </div>
+		  </div>
+	  </div>
     <el-col :sm="2" class="hidden-xs-only" style="opacity:0;">左侧占位</el-col>
     <el-col :xs="24" :sm="15">
         <div slot="header" class="total">
@@ -9,12 +35,12 @@
           </div>
           <!-- <span>共 <span style="color: #3a8ee6; font-size: 20px">{{totalcount}}</span> 篇</span> -->
         </div>
-        <el-row type="flex" align="middle" style="flex-wrap: wrap" :gutter="20" v-for="blog in blogList" :key="blog.id"
+        <el-row id="indexCard" type="flex" align="middle" style="flex-wrap: wrap" :gutter="20" v-for="blog in blogList" :key="blog.id"
           shadow="never" class="blog-content">
           <el-col class="img" :xs="24" :sm="6">
-            <el-image lazy :src="blog.blogPic" @click="getBlogInfo(blog.id)"></el-image>
+            <el-image style="width: 365px;height: 200px;" lazy :src="blog.blogPic" @click="getBlogInfo(blog.id)"></el-image>
           </el-col>
-          <el-col :xs="24" :sm="18" style="padding-left: 10px;padding-right: 10px;margin-bottom: 5px;margin-top: -5px;">
+          <el-col :xs="24" :sm="18" style="padding-left: 32px;padding-right: 10px;margin-bottom: 5px;margin-top: -5px;">
             <div @click="getBlogInfo(blog.id)">
               <h3><svg-icon icon-class="Topping" v-show="blog.top==1" /> {{blog.title}}</h3>
               <div style="margin-bottom: 10px;">
@@ -111,7 +137,13 @@
 </template>
 
 <script>
+	// 引入背景图
+  import backgroundImages from '../backgroundImages.js';
   import 'element-ui/lib/theme-chalk/display.css';
+  import Vue from 'vue'
+  import VueTypedJs from 'vue-typed-js'
+  
+  Vue.use(VueTypedJs)
   import {
     Loading
   } from 'element-ui';
@@ -163,9 +195,24 @@
         },
         // 总条数
         total: 0,
+		backgroundImages,
+		typingTexts: [
+		  "二次元技术透明宅的小站。",
+		  "慢慢成长的小透明，欢迎交流与讨论。",
+		],
       }
     },
     computed: {
+		backgroundImage() {
+		  // 根据背景图数组的长度随机选择索引
+		  const randIndex = Math.floor(Math.random() * this.backgroundImages.length)
+		  console.log(this.backgroundImages);
+		  return {
+		    // 获取对应的图片资源并将其设置到`background-image`属性上
+		    backgroundImage: `url(${this.backgroundImages[randIndex]})`
+		  }
+		},
+		
       pagSmall() {
         return this.screenWidth <= 768;
       },
@@ -362,7 +409,73 @@
 </script>
 
 <style scoped>
-
+.background {
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+    top: 0;
+    width: 100%;
+    height: 120vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  .background-content {
+	  max-width: 1125px;
+	  width: 90%;
+	  justify-content: center;
+	  align-items: center;
+  }
+  
+  .back-title {
+	  width: 90%;
+	  color: #ffffff;
+	  font-size: 4rem;
+	  justify-content: center;
+	  align-items: center;
+	  margin-bottom: 20px;
+  }
+  
+  .back-desc {
+	  justify-content: center;
+	  align-items: center;
+	  text-align: center;
+	  height: 40px;
+	  line-height: 40px;
+	  color: #c8c9cc;
+  }
+  
+  
+  .back-button{
+	  justify-content: center;
+	  align-items: center;
+	  text-align: center;
+  }
+  
+  .back-button-detail:hover {
+	  justify-content: center;
+	  align-items: center;
+	  text-align: center;
+	  background-color: #f44336;
+  }
+  
+  .back-button-detail{
+	  display: inline-block;
+	  height: 45px !important;
+	  line-height: 45px;
+	  margin: 10px 15px;
+	  padding: 0 35px;
+	  color: #ffffff;
+	  border-radius: 30px;
+	  font-size: 1rem;
+	  background-color: transparent;
+	  border: 1px solid #fff;
+	  transition: background-color .5s;
+	  -webkit-transition: background-color .5s;
+  }
+  
+  
   .welcome {
     background-color: rgba(0, 0, 0, 0.1);
     border: none;
@@ -746,7 +859,7 @@
   }
   
   /deep/ .pagination-container {
-	  width: 1560px;
+	  width: 1400px;
 	  height: 50px;
 	  border-radius: 50px;
 	  margin-left: -15px;

@@ -1,8 +1,9 @@
 <template>
 
   <el-container>
-    <div class="background" :style="backgroundImage"></div>
-    <cmsNavBar></cmsNavBar>
+	  <cmsNavBar></cmsNavBar>
+   <!-- <div class="background" :style="backgroundImage">
+	</div> -->
     <keep-alive>
       <cmsMain></cmsMain>
     </keep-alive>
@@ -54,20 +55,18 @@
   }
 
   .background {
-    background-repeat: no-repeat;
     background-size: cover;
     margin: 0px;
     padding: 0px;
     top: 0;
     width: 100%;
     height: 120vh;
-    position: fixed;
-    z-index:-1;
   }
 
   @media screen and (max-width: 768px) {
     .title {
-      width: 100%;
+      width: 1920px;
+	  height: 1080px;
       background-position-x: center;
       background-position-y: 0;
     }

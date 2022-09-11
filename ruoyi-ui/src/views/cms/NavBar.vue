@@ -1,6 +1,6 @@
 <template>
   <el-header :style="'margin-bottom:'+ headerBottom +'px'">
-    <h2 class="logo"><svg-icon icon-class="EarOfWheat" />  Blog</h2>
+    <h2 class="logo"><img style="width: 24px;height: 24px;" src="../../static/icon/logo.png" /> <span style="margin-left: 5px;"> Shadyree's Blog</span></h2>
     <div class="bg-purple-light">
       <el-menu :default-active="activeIndex" router class="el-menu-demo" mode="horizontal" style="border: none;"
         background-color="rgba(0,0,0,0)" text-color="#000000" active-text-color="#ffd04b">
@@ -266,11 +266,14 @@
 
 <style scoped>
   .el-header {
+	position: fixed;
+	top:0;
     display: flex;
     justify-content: space-between;
-    background-color: #fff;
     align-items: center;
     transition: .2s;
+	width: 100%;
+	z-index: 100;
   }
 
   .el-header:hover {
@@ -388,8 +391,9 @@
 
   .logo {
     float: left;
-    color: #ffd04b;
+    color: #ffffff;
     font-weight: bold;
+	display: inline-flex;
   }
 
   .logo:hover {
