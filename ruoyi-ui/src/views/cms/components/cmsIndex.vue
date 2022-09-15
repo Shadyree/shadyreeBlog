@@ -50,7 +50,7 @@
         <el-row id="indexCard" type="flex" align="middle" style="flex-wrap: wrap" :gutter="20" v-for="blog in blogList" :key="blog.id"
           shadow="never" class="blog-content">
           <el-col class="img" :xs="24" :sm="6">
-            <el-image style="width: 300px;height: 200px;" lazy :src="blog.blogPic" @click="getBlogInfo(blog.id)"></el-image>
+            <el-image style="width: 100%;height: 200px;" lazy :src="blog.blogPic" @click="getBlogInfo(blog.id)"></el-image>
           </el-col>
           <el-col :xs="24" :sm="18" style="padding-left: 32px;padding-right: 10px;margin-bottom: 5px;margin-top: -5px;">
             <div @click="getBlogInfo(blog.id)">
