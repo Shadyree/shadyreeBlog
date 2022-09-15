@@ -1,5 +1,17 @@
 <template>
   <el-row :gutter="20">
+	  <el-backtop>
+		  <img src="../../../static/icon/rocket.png" 
+		        style="{
+		          height: 100%;
+		          width: 100%;
+		          text-align: center;
+		          line-height: 40px;
+		          color: #1989fa;
+		        }"
+		      >
+		      </img>
+	  </el-backtop>
 	  <div class="background" :style="backgroundImage">
 		  <div class="background-content">
 			  <div class="back-title">Shadyree的个人小站</div>
@@ -38,7 +50,7 @@
         <el-row id="indexCard" type="flex" align="middle" style="flex-wrap: wrap" :gutter="20" v-for="blog in blogList" :key="blog.id"
           shadow="never" class="blog-content">
           <el-col class="img" :xs="24" :sm="6">
-            <el-image style="width: 365px;height: 200px;" lazy :src="blog.blogPic" @click="getBlogInfo(blog.id)"></el-image>
+            <el-image style="width: 100%;height: 200px;" lazy :src="blog.blogPic" @click="getBlogInfo(blog.id)"></el-image>
           </el-col>
           <el-col :xs="24" :sm="18" style="padding-left: 32px;padding-right: 10px;margin-bottom: 5px;margin-top: -5px;">
             <div @click="getBlogInfo(blog.id)">
@@ -206,7 +218,6 @@
 		backgroundImage() {
 		  // 根据背景图数组的长度随机选择索引
 		  const randIndex = Math.floor(Math.random() * this.backgroundImages.length)
-		  console.log(this.backgroundImages);
 		  return {
 		    // 获取对应的图片资源并将其设置到`background-image`属性上
 		    backgroundImage: `url(${this.backgroundImages[randIndex]})`
@@ -859,7 +870,7 @@
   }
   
   /deep/ .pagination-container {
-	  width: 1400px;
+	  width: 100%;
 	  height: 50px;
 	  border-radius: 50px;
 	  margin-left: -15px;
