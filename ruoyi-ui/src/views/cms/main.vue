@@ -17,7 +17,9 @@
 
 <style scoped>
   .el-main {
-	  padding: 0;
-    min-height: 650px;
+	  /* 所有页面的样式，引用组件了的都从这里走 */
+	padding: 0;
+	min-height: 120vh;
+	overflow: hidden;
   }
 </style>

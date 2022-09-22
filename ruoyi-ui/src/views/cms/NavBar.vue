@@ -113,8 +113,9 @@
           },
           {
             id: 3,
-            authName: '文档',
-            path: '/cms/doucument',
+            authName: '友情链接',
+            // path: '/cms/doucument',
+			path: '/',
             icon: 'el-icon-document',
           },
         ],
