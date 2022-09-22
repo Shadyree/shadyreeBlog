@@ -53,7 +53,7 @@
           <p class="avatar-Name">{{name}}</p>
         </div>
         <el-dropdown-menu slot="dropdown">
-          <router-link target="_blank" to="/index">
+          <router-link v-if="showManageBtn" target="_blank" to="/index">
             <el-dropdown-item>管理博客</el-dropdown-item>
           </router-link>
           <el-dropdown-item divided @click.native="logout">
@@ -130,12 +130,13 @@
           views: null,
           status: null,
         },
+		showManageBtn: false,
       };
     },
     computed: {
       ...mapGetters([
         'avatar',
-        'name'
+        'name',
       ]),
     },
     watch: {
@@ -152,6 +153,17 @@
     },
     created() {
       this.login();
+	  let permissions = this.$store.state.user.permissions
+	  if(this.$store.state.user.name !== 'admin'){
+		  for(let i of permissions) {
+			if(i == 'cms:back:manage'){
+				this.showManageBtn = true
+			}
+		  }
+	  }else{
+		  this.showManageBtn = true
+	  }
+	  
       // this.ResponsiveLayout();
     },
     methods: {
