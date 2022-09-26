@@ -40,7 +40,7 @@ import DictData from '@/components/DictData'
 // import './assets/mouseClick/heart';
 import './assets/mouseClick/word';
 // 鼠标移动特效
-import './assets/mouseMove/mouseMoveStar';
+// import './assets/mouseMove/mouseMoveStar';
 
 // 全局方法挂载
 Vue.prototype.getDicts = getDicts
