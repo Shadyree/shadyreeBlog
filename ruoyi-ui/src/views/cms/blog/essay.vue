@@ -11,6 +11,12 @@
             :value="dict.value" />
         </el-select>
       </el-form-item>
+	  <el-form-item label="是否展示" prop="isReadable">
+	    <el-select v-model="queryParams.isReadable" placeholder="请选择是否展示" clearable size="small">
+	      <el-option v-for="dict in dict.type.sys_yes_no" :key="dict.value" :label="dict.label"
+	        :value="dict.value" />
+	    </el-select>
+	  </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -80,6 +86,12 @@
           <!-- 图片用base64存储,url方式移动端会显示异常 -->
           <cmsEditor v-model="form.content" @getFileId="getFileId" type="base64" :min-height="192" />
         </el-form-item>
+		<el-form-item label="是否展示" prop="isReadable">
+			<el-select v-model="form.isReadable" placeholder="请选择是否展示" clearable size="small">
+			  <el-option v-for="dict in dict.type.sys_yes_no" :key="dict.value" :label="dict.label"
+				:value="dict.value" />
+			</el-select>
+		</el-form-item>
         <!-- <el-form-item>
           <el-checkbox v-model="top">置顶</el-checkbox>
         </el-form-item> -->
@@ -155,7 +167,7 @@
 
   export default {
     name: "Blog",
-    dicts: ['cms_blog_status'],
+    dicts: ['cms_blog_status', 'sys_yes_no'],
     data() {
       return {
         // 遮罩层
@@ -189,7 +201,8 @@
           top: null,
           views: null,
           status: null,
-          createBy: null
+          createBy: null,
+		  isReadable: null,
         },
         // 表单参数
         form: {},
@@ -206,6 +219,11 @@
             message: "类型不能为空",
             trigger: "change"
           }],
+		  isReadable: [{
+		    required: true,
+		    message: "是否展示不能为空",
+		    trigger: "blur"
+		  }],
         },
         fileIds: [],
       };
@@ -253,7 +271,8 @@
           content: null,
           top: "0",
           views: null,
-          status: "0"
+          status: "0",
+		  isReadable: "Y"
         };
         this.resetForm("form");
       },
@@ -294,6 +313,7 @@
       },
       /** 发布按钮 */
       releaseForm() {
+		  console.log(this.form);
         this.$refs["form"].validate(valid => {
           if (valid) {
             this.form.type = 2;

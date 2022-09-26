@@ -18,10 +18,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="status"    column="status"    />
         <result property="blogPic"    column="blog_pic"    />
         <result property="blogDesc"    column="blog_desc"    />
+        <result property="isReadable" column="is_readable" />
     </resultMap>
 
     <sql id="selectCmsBlogVo">
-        select id, create_by, create_time, update_by, update_time, title, type, content, Top, views, status, blog_pic, blog_desc from cms_blog
+        select id, create_by, create_time, update_by, update_time, title, type, content, Top, views, status, blog_pic, blog_desc, is_readable from cms_blog
     </sql>
 
     <select id="selectCmsBlogList" parameterType="CmsBlog" resultMap="CmsBlogResult">
@@ -34,6 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="views != null "> and views = #{views}</if>
             <if test="status != null  and status != ''"> and status = #{status}</if>
             <if test="createBy != null  and createBy != ''"> and create_by = #{createBy}</if>
+            <if test="isReadable != null and isReadable != ''">and is_readable = #{isReadable}</if>
         </where>
         ORDER BY Top DESC, create_time DESC
     </select>
@@ -128,6 +130,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="status != null">status = #{status},</if>
             <if test="blogPic != null">blog_pic = #{blogPic},</if>
             <if test="blogDesc != null">blog_desc = #{blogDesc},</if>
+            <if test="isReadable != null">is_readable = #{isReadable}</if>
         </trim>
         where id = #{id}
     </update>

@@ -55,8 +55,8 @@
           top: null,
           views: null,
           status: null,
+		  isReadable: "Y",
         },
-				backgroundImages,
         color: "#ffd04b",
 		backgroundImages,
       }

@@ -83,6 +83,9 @@ public class CmsBlog extends BaseEntity {
     /** 角色对象 */
     private List<CmsType> types;
 
+    /** 是否展示 */
+    private String isReadable;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -187,6 +190,14 @@ public class CmsBlog extends BaseEntity {
         this.blogDesc = blogDesc;
     }
 
+    public String getIsReadable() {
+        return isReadable;
+    }
+
+    public void setIsReadable(String isReadable) {
+        this.isReadable = isReadable;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
@@ -207,6 +218,7 @@ public class CmsBlog extends BaseEntity {
                 .append("types", getTypes())
                 .append("blogPic", getBlogPic())
                 .append("blogDesc", getBlogDesc())
+                .append("isReadable", getIsReadable())
                 .toString();
     }
 }
